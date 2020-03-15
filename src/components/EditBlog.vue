@@ -1,6 +1,6 @@
 <template>
-  <div id="add-blogs">
-    <h2>添加博客</h2>
+  <div id="add-blog">
+    <h2>编辑博客</h2>
     <form v-if="!submmited">
       <label>博客标题</label>
       <input type="text" v-model="blog.title" required />
@@ -22,11 +22,11 @@
       <select v-model="blog.author">
         <option v-for="author in authors">{{author}}</option>
       </select>
-      <button v-on:click.prevent="post">添加博客</button>
+      <button v-on:click.prevent="post">编辑博客</button>
     </form>
 
     <div v-if="submmited">
-      <h3>您的博客发布成功!</h3>
+      <h3>您的博客编辑成功!</h3>
     </div>
 
     <div id="preview">
@@ -45,42 +45,32 @@
 
 <script>
 export default {
-  // https://jsonplaceholder.typicode.com/
-  // https://jsonplaceholder.typicode.com/posts
-  name: "add-blog",
+  name: "edit-blog",
   data() {
     return {
-      maxID: 0,
-      blog: {
-        id: this.id + 1,
-        title: "",
-        content: "",
-        categories: [],
-        author: ""
-      },
-      //在beforeCreated阶段 生成对象的属性和方法
+      id: this.$route.params.id,
+      blog: {},
       authors: ["Hemiah", "Henry", "Bucky"],
       submmited: false
     };
   },
-  //进入页面时，调用created方法
   created() {
-    this.getMaxBlogID();
+    this.fetchData();
   },
   methods: {
-    getMaxBlogID() {
-      this.$http.get("http://localhost:3000/blogs").then(function(resp) {
-        var max = 0;
-        for (let key in resp.body) {
-          max = resp.body[key].id > max ? resp.body[key].id : max;
-        }
-        this.maxID = max;
-      });
+    fetchData() {
+      this.$http
+        .get("http://localhost:3000/blogs/" + this.id)
+        .then(resp => {
+          // console.log(resp.body);
+          this.blog = resp.body;
+        });
     },
     post: function() {
       this.$http
-        .post("http://localhost:3000/blogs", this.blog)
+        .put("http://localhost:3000/blogs/"+this.id, this.blog)
         .then(function(resp) {
+          console.log(resp);
           this.submmited = true;
         });
     }
@@ -149,3 +139,4 @@ h3 {
   margin-top: 10px;
 }
 </style>
+
