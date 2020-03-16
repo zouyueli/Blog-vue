@@ -14,7 +14,7 @@
 
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
   name: "single-blog",
   data() {
@@ -24,14 +24,14 @@ export default {
     };
   },
   created() {
-    axios.get("/blogs/" + this.id).then(function(resp) {
+    axios.get("/blogs/" + this.id).then(resp => {
       //   console.log(resp);  //true
       this.blog = resp.data;
     });
   },
   methods: {
     deleteSingleBlog() {
-      axios.delete("/blogs/" + this.id).then(function(resp) {
+      axios.delete("/blogs/" + this.id).then(resp => {
         //重定向
         this.$router.push({ path: "/" });
       });

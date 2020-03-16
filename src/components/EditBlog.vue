@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
   name: "edit-blog",
   data() {
@@ -66,7 +66,7 @@ export default {
       });
     },
     post: function() {
-      axios.put("/blogs/" + this.id, this.blog).then(function(resp) {
+      axios.put("/blogs/" + this.id, this.blog).then(resp => {
         console.log(resp);
         this.submmited = true;
       });
