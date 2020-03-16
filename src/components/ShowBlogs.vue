@@ -26,9 +26,9 @@ export default {
   created() {
     //若请求的是本地的路径，需要把文件放在static目录
     axios.get("/blogs").then(resp => {
-      // console.log(resp.data);
-      //   console.log(resp.data.constructor == Array); //true
-      //   console.log(Object.prototype.toString.call(resp.data) == '[object Array]');  //true
+        // console.log(resp.data);
+    //   console.log(resp.data.constructor == Array); //true
+    //   console.log(Object.prototype.toString.call(resp.data) == '[object Array]');  //true
       this.blogs = resp.data;
     });
   },
@@ -58,7 +58,7 @@ export default {
     }
   }
 };
-</script>F
+</script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
