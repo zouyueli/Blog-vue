@@ -2,15 +2,19 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import VueResource from 'vue-resource'
+//用axois代替vue-resource
+import axios from 'axios'
 import VueRouter from 'vue-router'
 import routes from './routes'
 
 Vue.config.productionTip = false
 
 //全局：在任何一个组件 都可以使用
-Vue.use(VueResource)
+// Vue.use(VueResource)
 Vue.use(VueRouter)
+
+//axios全局配置
+axios.defaults.baseURL = 'http://localhost:3000'
 
 
 

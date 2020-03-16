@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   // https://jsonplaceholder.typicode.com/
   // https://jsonplaceholder.typicode.com/posts
@@ -69,20 +70,18 @@ export default {
   },
   methods: {
     getMaxBlogID() {
-      this.$http.get("http://localhost:3000/blogs").then(function(resp) {
+      axios.get("/blogs").then(function(resp) {
         var max = 0;
-        for (let key in resp.body) {
-          max = resp.body[key].id > max ? resp.body[key].id : max;
+        for (let key in resp.data) {
+          max = resp.data[key].id > max ? resp.data[key].id : max;
         }
         this.maxID = max;
       });
     },
     post: function() {
-      this.$http
-        .post("http://localhost:3000/blogs", this.blog)
-        .then(function(resp) {
-          this.submmited = true;
-        });
+      axios.post("/blogs", this.blog).then(function(resp) {
+        this.submmited = true;
+      });
     }
   }
 };

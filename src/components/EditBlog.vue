@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: "edit-blog",
   data() {
@@ -59,20 +60,16 @@ export default {
   },
   methods: {
     fetchData() {
-      this.$http
-        .get("http://localhost:3000/blogs/" + this.id)
-        .then(resp => {
-          // console.log(resp.body);
-          this.blog = resp.body;
-        });
+      axios.get("/blogs/" + this.id).then(resp => {
+        // console.log(resp.data);
+        this.blog = resp.data;
+      });
     },
     post: function() {
-      this.$http
-        .put("http://localhost:3000/blogs/"+this.id, this.blog)
-        .then(function(resp) {
-          console.log(resp);
-          this.submmited = true;
-        });
+      axios.put("/blogs/" + this.id, this.blog).then(function(resp) {
+        console.log(resp);
+        this.submmited = true;
+      });
     }
   }
 };

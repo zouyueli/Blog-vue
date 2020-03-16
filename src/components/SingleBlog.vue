@@ -14,6 +14,7 @@
 
 
 <script>
+import axios from 'axios'
 export default {
   name: "single-blog",
   data() {
@@ -23,21 +24,17 @@ export default {
     };
   },
   created() {
-    this.$http
-      .get("http://localhost:3000/blogs/" + this.id)
-      .then(function(resp) {
-        //   console.log(resp);  //true
-        this.blog = resp.body;
-      });
+    axios.get("/blogs/" + this.id).then(function(resp) {
+      //   console.log(resp);  //true
+      this.blog = resp.data;
+    });
   },
   methods: {
     deleteSingleBlog() {
-      this.$http
-        .delete("http://localhost:3000/blogs/" + this.id)
-        .then(function(resp) {
-			//重定向
-			this.$router.push({path:'/'})
-        });
+      axios.delete("/blogs/" + this.id).then(function(resp) {
+        //重定向
+        this.$router.push({ path: "/" });
+      });
     }
   }
 };
