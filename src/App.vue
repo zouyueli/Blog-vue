@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- 根据url的不同，切换到不同的组件 -->
-    <BlogHeader></BlogHeader>
+    <!-- <BlogHeader></BlogHeader> -->
     <router-view></router-view>
     
     <!-- <ShowBlogs></ShowBlogs>   -->
@@ -14,14 +14,15 @@ import AddBlog from './components/AddBlog'
 import ShowBlogs from './components/ShowBlogs'
 import BlogHeader from './components/BlogHeader'
 import SingleBlog from './components/SingleBlog'
-import EditBlog from './components/EditBlog'  
+import EditBlog from './components/EditBlog' 
+import Resume from './components/Resume' 
 
 
 // App.vue 是多个组件的合并（components目录下.vue文件的集合），之后一起作用于 index.html
 export default {
   name: 'App',
   components:{
-    AddBlog,ShowBlogs,BlogHeader,SingleBlog,EditBlog
+    AddBlog,ShowBlogs,BlogHeader,SingleBlog,EditBlog,Resume
   }
 }
 </script>

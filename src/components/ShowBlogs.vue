@@ -29,6 +29,8 @@ export default {
         // console.log(resp.data);
     //   console.log(resp.data.constructor == Array); //true
     //   console.log(Object.prototype.toString.call(resp.data) == '[object Array]');  //true
+      //箭头函数的this指向 vue实例。
+      
       this.blogs = resp.data;
     });
   },
@@ -52,7 +54,11 @@ export default {
   computed: {
     filteredBlogs: function() {
       //es6新增的方法 ：数组的filter方法，匹配对了返回true，进行展示，否则false
-      return this.blogs.filter(blog => {
+      return this.blogs.filter((blog) =>{
+        console.log("this:"+this);
+        setTimeout(() => {
+          console.log("timeout-this:"+this)
+        }, 2000);
         return blog.title.match(this.search);
       });
     }

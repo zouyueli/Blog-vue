@@ -7,6 +7,7 @@
 						当点击了其他link后该值并不会被删除
 					所以需要在<router-link>添加exact
 				-->
+				<router-link to="/resume">笔者简历</router-link>
 				<router-link to="/" exact >博客</router-link>
 				<router-link to="/add" exact>写博客</router-link>
 			</li>
